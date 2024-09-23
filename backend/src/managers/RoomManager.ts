@@ -9,12 +9,13 @@ interface Room {
 
 export class RoomManager {
   private rooms: Map<string, Room>
+  
   constructor() {
     this.rooms = new Map<string, Room>()
   }
 
   createRoom(person1: User, person2: User) {
-    const roomId = this.generate(); // give room
+    const roomId = this.generate().toString(); // give room
     this.rooms.set(roomId.toString(), {
       person1,
       person2,
@@ -29,13 +30,15 @@ export class RoomManager {
     const person2 = this.rooms.get(roomId)?.person2;
     person2?.socket.emit("offer", {
       sdp,
+      roomId
     })
   }
 
   onAnswer(roomId: string, sdp: string) {
     const person1 = this.rooms.get(roomId)?.person1;
-    person1?.socket.emit("offer", {
+    person1?.socket.emit("answer", {
       sdp,
+      roomId
     })
   }
 
