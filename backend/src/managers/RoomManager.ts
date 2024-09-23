@@ -14,7 +14,7 @@ export class RoomManager {
   }
 
   createRoom(person1: User, person2: User) {
-    const roomId = this.generate();
+    const roomId = this.generate(); // give room
     this.rooms.set(roomId.toString(), {
       person1,
       person2,
