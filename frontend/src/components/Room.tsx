@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useRef, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Socket, io } from "socket.io-client";
@@ -86,19 +85,6 @@ export const Room = ({
             window.pcr = pc;
             pc.ontrack = (e) => {
                 alert("ontrack");
-                // console.error("inside ontrack");
-                // const {track, type} = e;
-                // if (type == 'audio') {
-                //     // setRemoteAudioTrack(track);
-                //     // @ts-ignore
-                //     remoteVideoRef.current.srcObject.addTrack(track)
-                // } else {
-                //     // setRemoteVideoTrack(track);
-                //     // @ts-ignore
-                //     remoteVideoRef.current.srcObject.addTrack(track)
-                // }
-                // //@ts-ignore
-                // remoteVideoRef.current.play();
             }
 
             pc.onicecandidate = async (e) => {
@@ -130,22 +116,12 @@ export const Room = ({
                     setRemoteAudioTrack(track1)
                     setRemoteVideoTrack(track2)
                 }
-             
+                
                 remoteVideoRef.current.srcObject.addTrack(track1)
-               
+                
                 remoteVideoRef.current.srcObject.addTrack(track2)
                 
                 remoteVideoRef.current.play();
-                // if (type == 'audio') {
-                //     // setRemoteAudioTrack(track);
-                //     // @ts-ignore
-                //     remoteVideoRef.current.srcObject.addTrack(track)
-                // } else {
-                //     // setRemoteVideoTrack(track);
-                //     // @ts-ignore
-                //     remoteVideoRef.current.srcObject.addTrack(track)
-                // }
-                // //@ts-ignore
             }, 5000)
         });
 
@@ -200,10 +176,10 @@ export const Room = ({
         }
     }, [localVideoRef])
 
-    return <div className="">
-        Hi {name}
+    return <div>
         <video autoPlay width={400} height={400} ref={localVideoRef} />
         {lobby ? "Waiting to connect you to someone" : null}
+        Hi {name}
         <video autoPlay width={400} height={400} ref={remoteVideoRef} />
     </div>
 }

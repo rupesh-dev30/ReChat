@@ -1,5 +1,6 @@
 import { User } from "./UserManager";
 
+
 let GLOBAL_ROOM_ID = 1;
 
 interface Room {
